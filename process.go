@@ -29,7 +29,7 @@ func GetPage(url string) *goquery.Document {
 
 func GetRegions() []Town {
     towns := []Town{}
-    doc := GetPage("https://pokemon.fandom.com/ko/wiki/%EC%84%B1%EB%8F%84%EC%A7%80%EB%B0%A9")
+    doc := GetPage(BaseUrl + "/ko/wiki/%EC%84%B1%EB%8F%84%EC%A7%80%EB%B0%A9")
     context := doc.Find("table")
     context.Each(func(i int, s *goquery.Selection) {
         if i == 17 {

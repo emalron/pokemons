@@ -7,11 +7,16 @@ import (
     "os"
 )
 
+var BaseUrl string
+
 func main() {
+    setInit()
     towns := GetRegions()
     for _, t := range towns {
         fmt.Println(t)
     }
+    // Insert(towns)
+
     router := mux.NewRouter()
     router.HandleFunc("/", callback)
     http.Handle("/", headerMiddleWare(router))
@@ -19,6 +24,10 @@ func main() {
     if err != nil {
         fmt.Fprintf(os.Stderr, "http error", err)
     }
+}
+
+func setInit() {
+    BaseUrl = "https://pokemon.fandom.com"
 }
 
 func callback(w http.ResponseWriter, r *http.Request) {
